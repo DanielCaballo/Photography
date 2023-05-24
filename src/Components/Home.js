@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import './App.css';
 
-function App() {
+const Home =() =>{
     return (
         <div>
             <div className={'app__header'}>
@@ -15,7 +14,7 @@ function App() {
             </div>
 
             <div>
-                <Button variant>Entrar</Button>
+                <Button>Entrar</Button>
                 <Button>Registrate</Button>
             </div>
         </div>
