@@ -1,5 +1,5 @@
 import { React, useState}  from "react";
-import {Button, makeStyles, Modal} from "@material-ui/core";
+import {Button, makeStyles, Modal,Input} from "@material-ui/core";
 
 
 //Estilo del pop up
@@ -23,18 +23,43 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Home =() =>{
     const classes= useStyles()
-    const [modalStyle] = useStyles(getModalStyle)
+    const [modalStyle] = useState(getModalStyle)
 
     const [openEntrar, setOpenEntrar] = useState(false)
     const [openRegistrate, setopenRegistrate] = useState(false)
 
+    const [username,setuserName] = useState('')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
     return (
         <div className={'app'}>
-
-            <Modal>
-                <div>
+            <Modal open={openEntrar} onClose={()=>{setOpenEntrar(false)}}></Modal>
+            <Modal open={openEntrar} onClose={() => {openRegistrate(false)}}>
+                <div style={modalStyle} className={""}>
                     <form action="">
-
+                      <center>
+                          <img className={'app__headerImage'}
+                               src='https://w7.pngwing.com/pngs/973/11/png-transparent-logo-phoenix-illustration-phoenix-logo-design-phoenix-illustration-free-logo-design-template-photography-orange.png'
+                               alt="logo"
+                               width={'100'}
+                               height={'100'}
+                          />
+                      </center>
+                        <Input type="text"
+                               value={username}
+                               onChange={(e)=> {setuserName((e.target.value))}}
+                               placeholder={"Nombre"}/>
+                        <br/>
+                        <Input type="text"
+                               value={email}
+                               onChange={(e)=> {setEmail((e.target.value))}}
+                               placeholder={"Email"}/>
+                        <br/>
+                        <Input type="text"
+                               value={password}
+                               onChange={(e)=> {setPassword((e.target.value))}}
+                               placeholder={"Contraseña"}/>
+                        <Button type='submit' onClick={setOpenEntrar}>Entrar</Button>
                     </form>
                 </div>
             </Modal>
@@ -53,7 +78,7 @@ const Home =() =>{
             <div>
                 <Button variant={'contained'} color='primary'>Entrar</Button>
                 <br/> <br/>
-                <Button variant={'contained'} color='primary'>Registrate</Button>
+                <Button variant={'contained'} color='primary' onClick={()=>setopenRegistrate(true)}>Registrate</Button>
             </div>
         </div>
     );
