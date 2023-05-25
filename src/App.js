@@ -1,15 +1,13 @@
-import React from "react";
-import './App.css'
-// import {Home} from './components/Home'
+import './App.css';
+import {Home} from './Components/Home';
 
-class App extends Comment{
-    render() {
-        return (
-            <div className={"App"}>
-                {/*<Home />*/}
-                <h1>Hola que Hase</h1>
-            </div>
-        )
-    }
+function App() {
+
+    return (
+        <div className="App">
+            <Home />
+        </div>
+    );
 }
-export default App
+
+export default App;
