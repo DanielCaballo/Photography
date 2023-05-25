@@ -1,5 +1,11 @@
-import { React, useState}  from "react";
+import  React  from "react";
+import {  useState ,useEffect}  from "react";
 import {Button, makeStyles, Modal,Input} from "@material-ui/core";
+import { db, auth } from "../firebase";
+import 'firebase/compat/auth';
+import Posts from './Posts';
+import AddPost from './AddPost';
+import { Edit } from '@material-ui/icons';
 
 
 //Estilo del pop up
@@ -31,10 +37,71 @@ const Home =() =>{
     const [username,setuserName] = useState('')
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
+    const registrarse =(e)=>{
+
+        e.preventDefault();
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((authUser) => {
+                return authUser.user.updateProfile({
+                    displayName: username,
+                });
+            })
+            .catch((e) => alert(e.message));
+
+        setOpenEntrar(false);
+    }
+    const entrar =(e)=>{
+        e.preventDefault();
+        auth.signInWithEmailAndPassword(email, password)
+            .catch((e) => alert(e.message));
+
+        setopenRegistrate(false);
+    }
+
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                setUser(authUser);
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, [user, username]);
+
     return (
         <div className={'app'}>
-            <Modal open={openEntrar} onClose={()=>{setOpenEntrar(false)}}></Modal>
-            <Modal open={openEntrar} onClose={() => {openRegistrate(false)}}>
+            <Modal open={openEntrar} onClose={() => {setopenRegistrate(false)}}>
+                <div style={modalStyle} className={""}>
+                    <form action="">
+                      <center>
+                          <img className={'app__headerImage'}
+                               src='https://w7.pngwing.com/pngs/973/11/png-transparent-logo-phoenix-illustration-phoenix-logo-design-phoenix-illustration-free-logo-design-template-photography-orange.png'
+                               alt="logo"
+                               width={'100'}
+                               height={'100'}
+                          />
+                      </center>
+                        <Input type="text"
+                               value={username}
+                               onChange={(e)=> {setuserName((e.target.value))}}
+                               placeholder={"Nombre"}/>
+                        <br/>
+                        <Input type="text"
+                               value={password}
+                               onChange={(e)=> {setPassword((e.target.value))}}
+                               placeholder={"Contraseña"}/>
+                        <Button type='submit' onClick={setOpenEntrar}>Entrar</Button>
+                    </form>
+                </div>
+            </Modal>
+
+            <Modal open={openRegistrate} onClose={() => {setopenRegistrate(false)}}>
                 <div style={modalStyle} className={""}>
                     <form action="">
                       <center>
@@ -59,7 +126,7 @@ const Home =() =>{
                                value={password}
                                onChange={(e)=> {setPassword((e.target.value))}}
                                placeholder={"Contraseña"}/>
-                        <Button type='submit' onClick={setOpenEntrar}>Entrar</Button>
+                        <Button type='submit' onClick={setopenRegistrate}>Registrarte</Button>
                     </form>
                 </div>
             </Modal>
@@ -76,7 +143,7 @@ const Home =() =>{
 
 
             <div>
-                <Button variant={'contained'} color='primary'>Entrar</Button>
+                <Button variant={'contained'} color='primary' onClick={()=>setOpenEntrar(true)}>Entrar</Button>
                 <br/> <br/>
                 <Button variant={'contained'} color='primary' onClick={()=>setopenRegistrate(true)}>Registrate</Button>
             </div>
