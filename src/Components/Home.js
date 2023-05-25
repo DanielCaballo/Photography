@@ -38,6 +38,8 @@ const Home =() =>{
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
+    const [usuario,setuser] = useState(null)
+
     const registrarse =(e)=>{
 
         e.preventDefault();
@@ -143,10 +145,16 @@ const Home =() =>{
 
 
             <div>
-                <Button variant={'contained'} color='primary' onClick={()=>setOpenEntrar(true)}>Entrar</Button>
-                <br/> <br/>
-                <Button variant={'contained'} color='primary' onClick={()=>setopenRegistrate(true)}>Registrate</Button>
-            </div>
+                {user ? (
+                    <Button variant="contained" color='primary' onClick={() => auth.signOut()}>Logout</Button>
+                ) : (
+                    <div>
+                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpensignin(true)}>Sign In</Button>
+                        <span>&nbsp;</span>
+                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpen(true)}>Sign Up</Button>
+                    </div>
+                )}
+                 </div>
         </div>
     );
 }
