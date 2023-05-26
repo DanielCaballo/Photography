@@ -3,24 +3,24 @@ import {  useState ,useEffect}  from "react";
 import {Button, makeStyles, Modal,Input} from "@material-ui/core";
 import { db, auth } from "../firebase";
 import 'firebase/compat/auth';
-import Posts from './Posts';
-import AddPost from './AddPost';
-import { Edit } from '@material-ui/icons';
+// import Posts from './Posts';
+// import AddPost from './AddPost';
+// import { Edit } from '@material-ui/icons';
 
 
 //Estilo del pop up
 function getModalStyle(){
     return{
-        top:'50%',
-        left:'50%',
-        transform: 'translate(-50%,-50%',
+        // top:'50%',
+        // left:'50%',
+        // transform: 'translate(-50%,-50%',
     };
 }
 
 const useStyles = makeStyles((theme) => ({
     paper:{
-        position:"absolute",
-        width:"400px",
+        // position:"absolute",
+        // width:"400px",
         backgroundColor:"red",
         border:"2px solid #000",
         boxShadow: theme.shadows[5],
@@ -38,7 +38,7 @@ const Home =() =>{
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
-    const [usuario,setuser] = useState(null)
+    const [user,setuser] = useState(null)
 
     const registrarse =(e)=>{
 
@@ -65,9 +65,9 @@ const Home =() =>{
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
             if (authUser) {
-                setUser(authUser);
+                setuser(authUser);
             } else {
-                setUser(null);
+                setuser(null);
             }
         });
 
@@ -146,12 +146,12 @@ const Home =() =>{
 
             <div>
                 {user ? (
-                    <Button variant="contained" color='primary' onClick={() => auth.signOut()}>Logout</Button>
+                    <Button variant="contained" color='primary' onClick={() => auth.signOut()}>Salir</Button>
                 ) : (
                     <div>
-                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpensignin(true)}>Sign In</Button>
+                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpenEntrar(true)}>Loguearte</Button>
                         <span>&nbsp;</span>
-                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpen(true)}>Sign Up</Button>
+                        <Button variant="contained" color='primary' disableElevation onClick={() => setopenRegistrate(true)}>Registrate</Button>
                     </div>
                 )}
                  </div>
