@@ -78,6 +78,15 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     src=" "
                 />
                 <h3>{userName}</h3>
+                {
+                    user.displayName === userName &&
+
+                    <DeleteForeverIcon style={{ color: ' red' }} onClick={() => {
+                        db
+                            .collection("posts")
+                            .doc(postId).delete()
+                    }} />
+                }
             </div>
 
             <img
@@ -121,7 +130,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     <input
                         className="post__input"
                         type="text"
-                        placeholder="Edit comment..."
+                        placeholder="Editar Comentario"
                         value={editComment}
                         onChange={(e) => setEditComment(e.target.value)}
                     />
@@ -140,27 +149,19 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     <input
                         className="post__input"
                         type="text"
-                        placeholder="Add a comment..."
+                        placeholder="Añade un Comentario"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <Button
+                    <button
                         className="post__button"
                         disabled={!newComment}
                         type="submit"
                         onClick={postComment}
                     >
-                        Comentar!
-                    </Button>
-                    {
-                        user.displayName === userName &&
+                        Comenta!
+                    </button>
 
-                        <DeleteForeverIcon style={{ color: ' red' }} onClick={() => {
-                            db
-                                .collection("posts")
-                                .doc(postId).delete()
-                        }} />
-                    }
 
                 </form>
             )}

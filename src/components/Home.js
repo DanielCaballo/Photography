@@ -113,42 +113,45 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="app">
+        <div className="tarjeta">
             <Modal open={open} onClose={() => setOpen(false)}>
                 <div style={modalStyle} className={classes.paper}>
-                    <form className="app__signup">
+                    <form className="tarjeta--form">
                         <center>
                             <img
-                                className="app__headerImage"
-                                src="https://upload.wikimedia.org/wikipedia/commons/0/06/%C4%B0nstagram-Profilime-Kim-Bakt%C4%B1-1.png"
+                                className="tarjeta--form__img"
+                                src="../../public/Photography.png"
                                 alt=""
                                 width={'180'}
                                 height={'60'}
                             />
                         </center>
                         <br></br>
-                        <Input
+                        <input
+                            className={"tarjeta--form__input"}
                             placeholder="Nombre de Usuario"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                         <br></br>
-                        <Input
+                        <input
+                            className={"tarjeta--form__input"}
                             placeholder="email"
                             type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <br></br>
-                        <Input
+                        <input
+                            className={"tarjeta--form__input"}
                             placeholder="Contraseña"
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br></br>
-                        <Button type="submit" onClick={signUp}>
+                        <Button className={"button"} type="submit" onClick={signUp}>
                             Registrarse
                         </Button>
                     </form>
@@ -157,58 +160,52 @@ const Home = () => {
 
             <Modal open={openSignin} onClose={() => setOpensignin(false)}>
                 <div style={modalStyle} className={classes.paper}>
-                    <form className="app__signup">
+                    <form className="">
                         <center>
                             <img
-                                className="app__headerImage"
-                                src="https://upload.wikimedia.org/wikipedia/commons/0/06/%C4%B0nstagram-Profilime-Kim-Bakt%C4%B1-1.png"
+                                className="tarjeta--form__img"
+                                src="../../public/Photography.png"
                                 alt=""
                                 width={'180'}
                                 height={'60'}
                             />
                         </center>
                         <br></br>
-                        <Input
+                        <input
+                            className={"tarjeta--form__input"}
                             placeholder="email?"
                             type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <br></br>
-                        <Input
+                        <input
+                            className={"tarjeta--form__input"}
                             placeholder="Contraseña?"
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br></br>
-                        <Button type="submit" onClick={signIn}>
+                        <Button className={"button"} type="submit" onClick={signIn}>
                             Entrar
                         </Button>
+                        <br/>
 
-                        <Button onClick={signInWithGoogle}>Iniciar sesión con Google</Button>
+                        <Button className={"button"} onClick={signInWithGoogle}>Iniciar sesión con Google</Button>
 
                     </form>
                 </div>
             </Modal>
 
-            <div className="app__header">
+            <div className="">
                 <img
-                    className="app__headerImage"
-                    src="https://upload.wikimedia.org/wikipedia/commons/0/06/%C4%B0nstagram-Profilime-Kim-Bakt%C4%B1-1.png"
+                    className="tarjeta--form__img"
+                    src="../../public/Photography.png"
                     alt=""
                     width={'180'}
                     height={'60'}
                 />
-                {user ? (
-                    <Button variant="contained" color='primary' onClick={() => auth.signOut()}>Salir</Button>
-                ) : (
-                    <div>
-                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpensignin(true)}>Inicia Sesion</Button>
-                        <span>&nbsp;</span>
-                        <Button variant="contained" color='primary' disableElevation onClick={() => setOpen(true)}>Registrate</Button>
-                    </div>
-                )}
             </div>
 
 
@@ -217,13 +214,23 @@ const Home = () => {
                     <AddPost username={user.displayName} />
                 </>
             ) : (
-                <div className='unauth'>
+                <div className='frase'>
                     Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>aquí</b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>regístrate</b> para poder añadir o comentar fotos.
                 </div>
             )}
-
-            <div className="app__posts">
-                <div className="app__postright">
+            {user ? (
+                <div className={"salir"}>
+                    <Button className={"button"} onClick={() => auth.signOut()}>Salir</Button>
+                </div>
+            ) : (
+                <div>
+                    <Button className={"button"} disableElevation onClick={() => setOpensignin(true)}>Inicia Sesion</Button>
+                    <span>&nbsp;</span>
+                    <Button className={"button"} disableElevation onClick={() => setOpen(true)}>Registrate</Button>
+                </div>
+            )}
+            <div className="">
+                <div className="Post">
                     <br />
                     {posts.map(({ id, post }) => (
                         user && user.displayName ? (

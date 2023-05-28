@@ -4,6 +4,7 @@ import { TextField, Button } from '@material-ui/core'
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import 'firebase/compat/storage';
+import './../App.css'
 
 
 
@@ -53,19 +54,19 @@ function AddPost({ username }) {
         setImage(null)
     }
     return (
-        < div className="imagesupload">
+        < div className="subirImg">
 
 
-            <h2 style={{ textAlign: 'center', margin: '15px' }}>Añade una nueva Foto</h2>
+            <h2 className={"text-center"}>Añade una nueva Foto</h2>
 
 
             <input className='file-input' type="file" onChange={handleChange} />
             <br />
-            <TextField id="filled-basic" label="Caption here" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
+            <TextField className={"textField"} id="filled-basic" label="Pon una Descripcion" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
             <br />
 
-            < progress className="progress" value={progress} max="100" />
-            <Button variant="contained" color='primary' onClick={handleUpload}>
+            < progress className="barraProgreso" value={progress} max="100" />
+            <Button className={"button"} onClick={handleUpload}>
                 Subir Foto
             </Button>
 

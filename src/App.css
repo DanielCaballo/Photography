@@ -1,50 +1,113 @@
-* {
+
+body {
   margin: 0;
+  background: radial-gradient(#00818F , #213E97)
 }
 
-.app__header {
-  object-fit: contain;
-  display: flex;
-  z-index: 1;
-  padding: 20px;
-  background-color: white;
-  border-bottom: 1px solid lightgray;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
+
+.text-center{
+  text-align: center;
+}
+.button{
+  background-color: #7993E2 !important;
+  color: white !important;
+  margin: 10px !important;
+}
+.tarjeta{
+  display: grid;
+  align-items: center;
+  /*color: white;*/
+  justify-items: center;
+  background-color: #00818F;
+
+
 
 }
 
-.app {
-  background-color: azure;
+.tarjeta--form__img{
+  width: 400px;
+  height: 400px;
 }
 
-.app_headerImage {
-  object-fit: content;
+.frase{
+  color: white;
 }
 
-.app__signup {
+
+.subirImg {
   display: flex;
   flex-direction: column;
+  width: 35%;
+
 }
-
-.unauth {
-  text-align: center;
-  font-size: x-large;
-  font-weight: bold;
+.barraProgreso {
+  width: 100%;
 }
+.tarjeta--form__input{
+  font: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #213E97 ;
+  height: 1em;
+  margin: 0;
+  display: block;
+  padding: 8px;
+  min-width: 0;
+  background: none;
+}
+.tarjeta--form__input :hover{
+  border: 2px solid #213E97;
+}
+.textField{
+  background-color: #7993E2;
+  border: none !important;
+}
+.salir{
 
-/* posts */
-
-.app__posts {
+}
+.Post{
   display: flex;
-  padding-top: 20px;
-  padding-left: 500px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 2%;
+  justify-content:center;
+  align-items: stretch;
+
+}
+.post {
+  position: relative;
+  background-color: #7993E2;
+  max-width: 500px;
+  border: 5px solid #213E97;
+  margin-bottom: 45px;
+  border-radius: 10px;
+
+
 }
 
-.app__postleft {
-  margin-left: 10px
+.post__commentbox {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.post__button {
+  text-transform: uppercase;
+  flex: 0;
+  border: 2px solid #213E97;
+  background-color: #7993E2;
+}
+
+.post__comments {
+  padding: 20px;
+  display: flex;
+}
+.post__input {
+  flex: .95;
+  border: none;
+  padding: 10px;
+  border-top: 1px solid #213E97;
+  background-color: #7993E2;
 }
 
 .post__image {
@@ -69,59 +132,32 @@
   padding: 20px;
 }
 
-.post {
-  background-color: white;
-  max-width: 500px;
-  border: 1px solid black;
-  margin-bottom: 45px;
-  border-radius: 10px;
 
+/*.app__header {*/
+/*  object-fit: contain;*/
+/*  display: flex;*/
+/*  z-index: 1;*/
+/*  padding: 20px;*/
+/*  background-color: white;*/
+/*  border-bottom: 1px solid lightgray;*/
+/*  margin-bottom: 10px;*/
+/*  justify-content: space-between;*/
+/*  position: sticky;*/
+/*  top: 0;*/
 
-}
+/*}*/
 
-.post__commentbox {
-  display: flex;
-  margin-top: 10px;
-}
+/*.app {*/
+/*  background-color: #220939;*/
+/*  color:white;*/
+/*}*/
 
-.post__input {
-  flex: 1;
-  border: none;
-  padding: 10px;
-  border-top: 1px solid lightblue;
-}
+/*.app__signup {*/
 
-.post__button {
-  flex: 0;
-  border: none;
-  border-top: 1px solid lightgray;
-}
+/*}*/
 
-.post__comments {
-  padding: 20px;
-  display: flex;
-}
-
-/* upload */
-
-.imagesupload {
-  display: flex;
-  flex-direction: column;
-  width: 35%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-
-}
-
-.progress {
-  width: 100%;
-}
-
-input[type=file] {
-  font-size: medium;
-  display: inline-block;
-  cursor: pointer;
-}
+/*.unauth {*/
+/*  text-align: center;*/
+/*  font-size: x-large;*/
+/*  font-weight: bold;*/
+/*}*/
