@@ -13,31 +13,64 @@ body {
   color: white !important;
   margin: 10px !important;
 }
+.button--full{
+  background-color: #7993E2 !important;
+  color: white !important;
+  margin: 0 !important;
+  margin-bottom: 40px !important;
+  margin-top: 10px !important;
+  width: 100%;
+  text-align: center;
+
+}
+
 .tarjeta{
-  display: grid;
+  /*display: grid;*/
   align-items: center;
   /*color: white;*/
   justify-items: center;
-  background-color: #00818F;
-
+  /*background-color: #00818F;*/
 
 
 }
 
 .tarjeta--form__img{
-  width: 400px;
-  height: 400px;
+  float: left;
+  width: 200px;
+  height: 200px;
 }
-
-.frase{
+.tarjeta--form--img__sing{
+  width: 200px;
+  height: 200px;
+}
+.inicio{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.inicio__frase{
+  font-size: 2em;
+  color: white;
+}
+.inicio__img{
+  font-size: 2em;
   color: white;
 }
 
 
 .subirImg {
   display: flex;
-  flex-direction: column;
-  width: 35%;
+  justify-content: space-around;
+  width: 79%;
+
+}
+.subirImg--styles{
+
+  align-items: center;
+  color: white;
+  width: 50%;
 
 }
 .barraProgreso {
@@ -60,9 +93,12 @@ body {
 }
 .textField{
   background-color: #7993E2;
+  width: 100%;
   border: none !important;
 }
 .salir{
+  display: flex;
+  float: right;
 
 }
 .Post{
@@ -97,11 +133,16 @@ body {
   border: 2px solid #213E97;
   background-color: #7993E2;
 }
-
-.post__comments {
-  padding: 20px;
+.post--comentarios {
+  padding: 1px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  max-height: 100px;
+  overflow-y: auto;
 }
+
 .post__input {
   flex: .95;
   border: none;
@@ -131,7 +172,24 @@ body {
 .post__text {
   padding: 20px;
 }
+.footer{
+  display: flex;
+  background-color: black;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
 
+}
+.footer--left{
+  float: left;
+  padding-left: 2% ;
+}
+.footer--right{
+  float: right;
+  padding-right: 2%;
+}
 
 /*.app__header {*/
 /*  object-fit: contain;*/

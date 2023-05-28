@@ -56,7 +56,7 @@ function AddPost({ username }) {
     return (
         < div className="subirImg">
 
-
+            <div className="subirImg--styles">
             <h2 className={"text-center"}>Añade una nueva Foto</h2>
 
 
@@ -66,11 +66,11 @@ function AddPost({ username }) {
             <br />
 
             < progress className="barraProgreso" value={progress} max="100" />
-            <Button className={"button"} onClick={handleUpload}>
+            <Button className={"button--full"} onClick={handleUpload}>
                 Subir Foto
             </Button>
 
-
+            </div>
 
         </div>
     )

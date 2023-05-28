@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core';
 import Modal from "@material-ui/core/Modal";
 import { Button, Input } from "@material-ui/core";
+import PhotographyImage from "./images/Photography.png";
+import PhotographyImage1 from "./images/Photography-sing.png";
+import Eslogan from "./images/Eslogan.png";
 
 import 'firebase/compat/auth';
 import Posts from './Posts';
 import AddPost from './AddPost';
 import {db, auth, provider } from "../firebase";
+import Footer from "./Footer";
 
 
 function getModalStyle() {
@@ -119,8 +123,8 @@ const Home = () => {
                     <form className="tarjeta--form">
                         <center>
                             <img
-                                className="tarjeta--form__img"
-                                src="../../public/Photography.png"
+                                className="tarjeta--form--img-sing"
+                                src={PhotographyImage1}
                                 alt=""
                                 width={'180'}
                                 height={'60'}
@@ -163,8 +167,8 @@ const Home = () => {
                     <form className="">
                         <center>
                             <img
-                                className="tarjeta--form__img"
-                                src="../../public/Photography.png"
+                                className="tarjeta--form--img__sing"
+                                src={PhotographyImage1}
                                 alt=""
                                 width={'180'}
                                 height={'60'}
@@ -187,12 +191,12 @@ const Home = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br></br>
-                        <Button className={"button"} type="submit" onClick={signIn}>
+                        <Button className={"button--full"} type="submit" onClick={signIn}>
                             Entrar
                         </Button>
                         <br/>
 
-                        <Button className={"button"} onClick={signInWithGoogle}>Iniciar sesión con Google</Button>
+                        <Button className={"button--full"} onClick={signInWithGoogle}>Iniciar sesión con Google</Button>
 
                     </form>
                 </div>
@@ -201,34 +205,43 @@ const Home = () => {
             <div className="">
                 <img
                     className="tarjeta--form__img"
-                    src="../../public/Photography.png"
+                    src={PhotographyImage}
                     alt=""
                     width={'180'}
                     height={'60'}
                 />
             </div>
 
-
-            {user && user.displayName ? (
-                <>
-                    <AddPost username={user.displayName} />
-                </>
-            ) : (
-                <div className='frase'>
-                    Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>aquí</b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>regístrate</b> para poder añadir o comentar fotos.
-                </div>
-            )}
             {user ? (
                 <div className={"salir"}>
                     <Button className={"button"} onClick={() => auth.signOut()}>Salir</Button>
                 </div>
             ) : (
-                <div>
+                <div className={"salir"}>
                     <Button className={"button"} disableElevation onClick={() => setOpensignin(true)}>Inicia Sesion</Button>
                     <span>&nbsp;</span>
                     <Button className={"button"} disableElevation onClick={() => setOpen(true)}>Registrate</Button>
                 </div>
             )}
+            {user && user.displayName ? (
+                <>
+                    <AddPost username={user.displayName} />
+                </>
+            ) : (
+                <div className='inicio'>
+                    <div className={"inicio__frase"}>
+                        Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>    aquí   </b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>   regístrate   </b> para poder añadir o comentar fotos.
+                    </div>
+                    <div className={"inicio__img"}>
+                        <img src={Eslogan}
+                             alt="Eslogan"
+                             width={'650'}
+                             height={'650'}/>
+
+                    </div>
+                    </div>
+            )}
+
             <div className="">
                 <div className="Post">
                     <br />
@@ -246,6 +259,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

@@ -97,7 +97,8 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                 <b>{userName}</b> {caption}
             </p>
 
-            <div className="post__comments">
+            <div className="post--comentarios">
+                <div className="post--comentarios__texto">
                 {comments.map(({ id, comment }) => (
                     <>
                         <p key={id}>
@@ -106,7 +107,8 @@ function Posts({ postId, user, userName, caption, imageURL }) {
 
                     </>
                 ))}
-
+                </div>
+                <div className="post--comentarios__iconos">
                 &nbsp;
                 {comments.map(({ id, comment }) => (
                     (comment.username === user.displayName || user.displayName === userName) &&
@@ -122,7 +124,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     </p>
 
                 ))}
-
+                </div>
 
             </div>
             {user && show && <>
