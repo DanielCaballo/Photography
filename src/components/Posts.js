@@ -114,7 +114,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                 }}
             >
                 <Fade in={open}>
-                    <div>
+                    <div className="modalContainer modalImage">
                         <img
                             className="post__image"
                             src={selectedImage}

@@ -195,31 +195,20 @@ body {
   padding-right: 2%;
 }
 
-/*.app__header {*/
-/*  object-fit: contain;*/
-/*  display: flex;*/
-/*  z-index: 1;*/
-/*  padding: 20px;*/
-/*  background-color: white;*/
-/*  border-bottom: 1px solid lightgray;*/
-/*  margin-bottom: 10px;*/
-/*  justify-content: space-between;*/
-/*  position: sticky;*/
-/*  top: 0;*/
+.modalContainer {
+  max-width: 80%;
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalImage {
+  max-height: 40%;
+  max-width: 40%;
+  object-fit: contain;
 
-/*}*/
-
-/*.app {*/
-/*  background-color: #220939;*/
-/*  color:white;*/
-/*}*/
-
-/*.app__signup {*/
-
-/*}*/
-
-/*.unauth {*/
-/*  text-align: center;*/
-/*  font-size: x-large;*/
-/*  font-weight: bold;*/
-/*}*/
+}
