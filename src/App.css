@@ -102,12 +102,15 @@ body {
 
 }
 .Post{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 2%;
-  justify-content:center;
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+  /*flex-direction: row;*/
+  gap: 50px;
+  /*justify-content:center;*/
   align-items: stretch;
+  column-count: 3;
+  margin: 5%;
+
 
 }
 .post {
@@ -117,7 +120,7 @@ body {
   border: 5px solid #213E97;
   margin-bottom: 45px;
   border-radius: 10px;
-
+  break-inside: avoid;
 
 }
 
@@ -149,6 +152,7 @@ body {
   padding: 10px;
   border-top: 1px solid #213E97;
   background-color: #7993E2;
+
 }
 
 .post__image {

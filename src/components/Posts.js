@@ -8,6 +8,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
+import { Modal, Backdrop, Fade } from "@material-ui/core";
+
 
 
 
@@ -17,6 +19,13 @@ function Posts({ postId, user, userName, caption, imageURL }) {
     const [editComment, setEditComment] = useState('');
     const [commentID, setCommentID] = useState('');
     const [show, setShow] = useState(false)
+    const [open, setOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState("");
+
+    const handleImageClick = (url) => {
+        setSelectedImage(url);
+        setOpen(true);
+    };
 
     useEffect(() => {
         let unsubscribe;
@@ -88,11 +97,32 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     }} />
                 }
             </div>
-
-            <img
-                className="post__image"
-                src={imageURL}/>
-
+            {/*Funcion para que funcione el pop up de las imagenes */}
+            <div onClick={() => handleImageClick(imageURL)}>
+                <img
+                    className="post__image"
+                    src={imageURL}
+                />
+            </div>
+            <Modal
+                open={open}
+                onClose={() => setOpen(false)}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div>
+                        <img
+                            className="post__image"
+                            src={selectedImage}
+                        />
+                    </div>
+                </Fade>
+            </Modal>
+            {/*-----*/}
             <p className="post__text">
                 <b>{userName}</b> {caption}
             </p>
