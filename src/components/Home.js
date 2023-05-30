@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core';
 import Modal from "@material-ui/core/Modal";
-import { Button, Input } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import PhotographyImage from "./images/Photography.png";
 import PhotographyImage1 from "./images/Photography-sing.png";
 import Eslogan from "./images/Eslogan.png";
@@ -54,7 +54,7 @@ const Home = () => {
         auth.signInWithPopup(provider)
             .then((result) => {
                 // El inicio de sesión con Google se completó exitosamente
-                const user = result.user;
+                // const user = result.user;
                 // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
             })
             .catch((error) => {
@@ -123,7 +123,7 @@ const Home = () => {
                     <form className="tarjeta--form">
                         <center>
                             <img
-                                className="tarjeta--form--img-sing"
+                                className="tarjeta--form--img__sing"
                                 src={PhotographyImage1}
                                 alt=""
                                 width={'180'}

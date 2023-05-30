@@ -212,3 +212,14 @@ body {
   object-fit: contain;
 
 }
+@media (max-width: 1150px) {
+  .Post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .subirImg {
+    display: flex;
+  }
+  }
+

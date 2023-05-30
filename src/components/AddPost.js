@@ -60,7 +60,7 @@ function AddPost({ username }) {
             <h2 className={"text-center"}>Añade una nueva Foto</h2>
 
 
-            <input className='file-input' type="file" onChange={handleChange} />
+            <input className='file-input' type="file" accept=".png, .jpg, .jpeg" onChange={handleChange} />
             <br />
             <TextField className={"textField"} id="filled-basic" label="Pon una Descripcion" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
             <br />
