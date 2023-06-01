@@ -45,13 +45,16 @@ const Home = () => {
             toggleModal : toggleModal2,
         }
     );
-    // Inicio de sesion con google
+    // Inicio de sesión con Google
     const signInWithGoogle = () => {
         auth.signInWithPopup(provider)
             .then((result) => {
                 // El inicio de sesión con Google se completó exitosamente
-                // const user = result.user;
+                const user = result.user;
                 // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
+
+                // Cerrar el modal después de iniciar sesión exitosamente
+                toggleModal2(false);
             })
             .catch((error) => {
                 // Ocurrió un error durante el inicio de sesión con Google
@@ -62,10 +65,13 @@ const Home = () => {
     const signIn = (event) => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
-            .catch((error) => alert(error.message));
+            .then(() => {
+                // Inicio de sesión con correo electrónico y contraseña exitoso
 
-         // setOpensignin(false);
-        // window.location.reload(false);
+                // Cerrar el modal después de iniciar sesión exitosamente
+                toggleModal2(false);
+            })
+            .catch((error) => alert(error.message));
     };
 
     useEffect(() => {
