@@ -1,6 +1,6 @@
 import * as React from "react";
 import PhotographyImage1 from "../images/Photography-sing.png";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {auth} from "../../firebase";
 
 
@@ -23,6 +23,19 @@ export const Regist = () => {
         // setOpen(false);
         // window.location.reload(false);
     };
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                setUser(authUser);
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, [user, username]);
     return (
         <div className="contenedor">
             <form className="formulario">

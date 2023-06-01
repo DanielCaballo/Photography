@@ -3,6 +3,9 @@ import { db } from "../firebase";
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import Modal from 'react-modal';
+import {edit_svg} from "./svgs/edit_svg";
+import {delete_svg} from "./svgs/delete_svg";
+import {trash_svg} from "./svgs/trash_svg";
 
 function Posts({ postId, user, userName, caption, imageURL }) {
     const [comments, setComments] = useState([]);
@@ -70,12 +73,12 @@ function Posts({ postId, user, userName, caption, imageURL }) {
             <div className="post__header">
                 <h3>{userName}</h3>
                 {user.displayName === userName && (
-                    <button
+                    <button className={"button__svg"}
                         onClick={() => {
                             db.collection("posts").doc(postId).delete();
                         }}
                     >
-                        Delete
+                        {trash_svg}
                     </button>
                 )}
             </div>
@@ -110,17 +113,17 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     {comments.map(({ id, comment }) => (
                         (comment.username === user.displayName || user.displayName === userName) && (
                             <p key={id}>
-                                <button onClick={() => handleEdit(id, comment.text)}>
-                                    Edit
+                                <button className={"button__svg"} onClick={() => handleEdit(id, comment.text)}>
+                                    {edit_svg}
                                 </button>
-                                <button onClick={() => {
+                                <button className={"button__svg"} onClick={() => {
                                     db.collection("posts")
                                         .doc(postId)
                                         .collection("comments")
                                         .doc(id)
                                         .delete();
                                 }}>
-                                    Delete
+                                    {delete_svg}
                                 </button>
                             </p>
                         )
@@ -143,7 +146,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                             type="submit"
                             onClick={updateComment}
                         >
-                            Update
+                            Editar Comentario?
                         </button>
                     </form>
                 </>
@@ -163,7 +166,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                         type="submit"
                         onClick={postComment}
                     >
-                        Comment
+                        Comenta!
                     </button>
                 </form>
             )}

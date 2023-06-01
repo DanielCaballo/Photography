@@ -69,7 +69,6 @@ function AddPost({ username }) {
             < progress className="barraProgreso" value={progress} max="100" />
             <button className={"button--full"} onClick={handleUpload}>
                 Subir Foto
-                {trash_svg}
             </button>
 
             </div>

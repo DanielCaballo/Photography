@@ -17,11 +17,6 @@ import {Inicio} from "./formularios/Inicio";
 
 const Home = () => {
     // const [has_modal, toggleModal] = useModal();
-
-    const testModal = ()=>{
-        return <h1>hola</h1>
-    }
-
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,27 +41,27 @@ const Home = () => {
         }
     );
     // Inicio de sesion con google
-    const signInWithGoogle = () => {
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                // El inicio de sesión con Google se completó exitosamente
-                // const user = result.user;
-                // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
-            })
-            .catch((error) => {
-                // Ocurrió un error durante el inicio de sesión con Google
-                console.log(error);
-            });
-    };
+    // const signInWithGoogle = () => {
+    //     auth.signInWithPopup(provider)
+    //         .then((result) => {
+    //             // El inicio de sesión con Google se completó exitosamente
+    //             // const user = result.user;
+    //             // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
+    //         })
+    //         .catch((error) => {
+    //             // Ocurrió un error durante el inicio de sesión con Google
+    //             console.log(error);
+    //         });
+    // };
 
-    const signIn = (event) => {
-        event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password)
-            .catch((error) => alert(error.message));
-
-        // setOpensignin(false);
-        // window.location.reload(false);
-    };
+    // const signIn = (event) => {
+    //     event.preventDefault();
+    //     auth.signInWithEmailAndPassword(email, password)
+    //         .catch((error) => alert(error.message));
+    //
+    //     // setOpensignin(false);
+    //     // window.location.reload(false);
+    // };
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -97,14 +92,16 @@ const Home = () => {
 
     return (
         <>
-            <img src={PhotographyImage} alt="Eslogan" width={'200'} height={'200'} />
-            {has_modal && (
-                <RegistFormUseWithModal has_modal={has_modal} toggleModal={toggleModal} />
-            )}
-            {has_modal2 && (
-                <InicioFormUseWithModal has_modal={has_modal2} toggleModal={toggleModal2} />
-            )}
+
             <div className="tarjeta">
+                <div className={"nav"}>
+                <img src={PhotographyImage} alt="Eslogan" width={'200'} height={'200'} />
+                {has_modal && (
+                    <RegistFormUseWithModal has_modal={has_modal} toggleModal={toggleModal} />
+                )}
+                {has_modal2 && (
+                    <InicioFormUseWithModal has_modal={has_modal2} toggleModal={toggleModal2} />
+                )}
                 {user ? (
                     <div className={"salir"}>
                         <button className={"button"} onClick={() => auth.signOut()}>Salir</button>
@@ -116,23 +113,20 @@ const Home = () => {
                         <button className={"button"} onClick={toggleModal} >Registrate</button>
                     </div>
                 )}
-
+                </div>
                 {user && user.displayName ? (
                     <>
                         <AddPost username={user.displayName} />
                     </>
+
                 ) : (
-                    <div className='inicio'>
-                        {/*<div className={"inicio__frase"}>*/}
-                        {/*    Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>    aquí   </b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>   regístrate   </b> para poder añadir o comentar fotos.*/}
-                        {/*</div>*/}
+
                         <div className={"inicio__img"}>
                             <img src={Eslogan}
                                  alt="Eslogan"
                                  width={'650'}
                                  height={'650'}/>
                         </div>
-                    </div>
                 )}
 
                 <div className="">
