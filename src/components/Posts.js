@@ -85,13 +85,14 @@ function Posts({ postId, user, userName, caption, imageURL }) {
             <div onClick={() => handleImageClick(imageURL)} >
                 <img className="post__image" src={imageURL} alt="Post" />
             </div>
-            <Modal
+            <Modal  className="modalContainer"
                 isOpen={open}
                 onRequestClose={() => setOpen(false)}
             >
-                <div>
+                <div  >
                     <img
-                        className="post__image"
+                        alt="post"
+                        className="modalImage"
                         src={selectedImage}
                     />
                 </div>

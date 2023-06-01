@@ -70,7 +70,6 @@ body {
   padding: 20px 20px;
   border-radius: 30px;
   position: relative;
-  z-index: 1;
   overflow: hidden;
   display: inline-block;
 
@@ -276,12 +275,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-.modalImage {
-  max-height: 40%;
-  max-width: 40%;
-  object-fit: contain;
-
-}
 @media (max-width: 1150px) {
   .Post{
     display: flex;
@@ -292,11 +285,6 @@ body {
     display: flex;
   }
   }
-.red{
-  background-color: red;
-  color: red;
-}
-
 .o-modal{
   position: fixed;
   top: 0;
@@ -336,4 +324,15 @@ span {
 .formulario{
 background: #7993E2;
 padding:2rem;
+}
+.modalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalImage {
+  max-height: 60vh;
+  max-width: 60vw;
+  object-fit: contain;
 }
