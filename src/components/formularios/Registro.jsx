@@ -73,9 +73,11 @@ export const Regist = () => {
                 onChange={(e) => setPassword(e.target.value)}
             />
             <br></br>
+                <div className={"botones"}>
             <button className={"button"} type="submit" onClick={signUp}>
                 Registrarse
             </button>
+                </div>
         </form>
         </div>
     );

@@ -9,20 +9,20 @@ body {
   text-align: center;
 }
 .tarjeta{
-  border: 1px solid deeppink;
-  /*display: grid;*/
   align-items: center;
-  /*color: white;*/
   justify-items: center;
-  /*background-color: #00818F;*/
 }
 .nav{
   display: flex;
-  border: 1px solid yellow;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+}
+.botones{
+  display: flex;
+  flex-direction: column;
+
 }
 .button{
   background: #fff;
@@ -141,7 +141,8 @@ body {
 
 }
 .barraProgreso {
-  width: 100%;
+  width: 110%;
+  padding: 30px;
 }
 .tarjeta--form__input{
   font: inherit;
@@ -161,7 +162,11 @@ body {
 .textField{
   background-color: #7993E2;
   width: 100%;
-  border: none !important;
+  border: none;
+  padding: 50px;
+  border-radius: 30px;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 .salir{
   display: flex;
@@ -169,11 +174,7 @@ body {
 
 }
 .Post{
-  /*display: flex;*/
-  /*flex-wrap: wrap;*/
-  /*flex-direction: row;*/
   gap: 50px;
-  /*justify-content:center;*/
   align-items: stretch;
   column-count: 3;
   margin: 3%;
@@ -296,7 +297,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid #000;
 }

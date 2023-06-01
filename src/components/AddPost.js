@@ -5,7 +5,6 @@ import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import 'firebase/compat/storage';
 import './../App.css'
-import {trash_svg} from "./svgs/trash_svg";
 
 
 
