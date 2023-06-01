@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PhotographyImage from "./images/Photography.png";
+import PhotographyImage1 from "./images/Photography-sing.png";
 import Eslogan from "./images/Eslogan.png";
 import 'firebase/compat/auth';
 import Posts from './Posts';
 import AddPost from './AddPost';
-import { db, auth } from "../firebase";
+import { db, auth, provider } from "../firebase";
 import Footer from "./Footer";
 import {Regist} from "./formularios/Registro";
 import {useModal} from "../Modals/useModal";
@@ -16,7 +17,15 @@ import {Inicio} from "./formularios/Inicio";
 
 const Home = () => {
     // const [has_modal, toggleModal] = useModal();
-    const [user] = useState(null);
+
+    const testModal = ()=>{
+        return <h1>hola</h1>
+    }
+
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [user, setUser] = useState(null);
     const [posts, setposts] = useState([]);
     const [has_modal, toggleModal] = useModal();
     const [has_modal2, toggleModal2] = useModal();
@@ -32,10 +41,47 @@ const Home = () => {
         Inicio,
         {},
         {
-           has_modal : has_modal2,
-           toggleModal : toggleModal2,
+            has_modal : has_modal2,
+            toggleModal : toggleModal2,
         }
     );
+    // Inicio de sesion con google
+    const signInWithGoogle = () => {
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                // El inicio de sesión con Google se completó exitosamente
+                // const user = result.user;
+                // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
+            })
+            .catch((error) => {
+                // Ocurrió un error durante el inicio de sesión con Google
+                console.log(error);
+            });
+    };
+
+    const signIn = (event) => {
+        event.preventDefault();
+        auth.signInWithEmailAndPassword(email, password)
+            .catch((error) => alert(error.message));
+
+         // setOpensignin(false);
+        // window.location.reload(false);
+    };
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((authUser) => {
+            if (authUser) {
+                setUser(authUser);
+            } else {
+                setUser(null);
+            }
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, [user, username]);
+
     useEffect(() => {
         db.collection("posts")
             .orderBy("timestamp", "desc")
@@ -77,7 +123,6 @@ const Home = () => {
                     <>
                         <AddPost username={user.displayName} />
                     </>
-
                 ) : (
 
                         <div className={"inicio__img"}>

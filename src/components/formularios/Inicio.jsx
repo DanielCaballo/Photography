@@ -16,10 +16,11 @@ export const Inicio = () => {
     //Inicio de sesion con google
     const signInWithGoogle = () => {
         auth.signInWithPopup(provider)
-            // .then((result) => {
-            //     // El inicio de sesión con Google se completó exitosamente
-            //     // const user = result.user;
-            // })
+            .then((result) => {
+                // El inicio de sesión con Google se completó exitosamente
+                // const user = result.user;
+                // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
+            })
             .catch((error) => {
                 // Ocurrió un error durante el inicio de sesión con Google
                 console.log(error);
