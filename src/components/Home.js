@@ -132,10 +132,14 @@ const Home = () => {
                 ) : (
 
                         <div className={"inicio__img"}>
-                            <img src={Eslogan}
+                            <div  className={"inicio__styles"}>
+                            <img
+                                className={""}
+                                src={Eslogan}
                                  alt="Eslogan"
                                  width={'650'}
                                  height={'650'}/>
+                            </div>
                         </div>
                 )}
 

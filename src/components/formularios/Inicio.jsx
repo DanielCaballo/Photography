@@ -86,7 +86,7 @@ export const Inicio = () => {
             <button className={"button"} type="submit" onClick={signIn}>
                 Entrar
             </button>
-            <button className={"button"} onClick={signInWithGoogle}>Iniciar sesión con Google</button>
+            <button className={"button"} onClick={signInWithGoogle} disabled>Iniciar sesión con Google</button>
                 </div>
         </form>
         </div>
