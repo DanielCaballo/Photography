@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useModal = (): [boolean, () => void] => {
+export const useModal = () => {
   const [is_modal, set_modal] = useState(false);
 
   const toggleModal = () => {

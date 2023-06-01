@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { db } from "../firebase";
-// import EditIcon from '@mui/icons-material/Edit';
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-// import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
+import Modal from 'react-modal';
 
 function Posts({ postId, user, userName, caption, imageURL }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [editComment, setEditComment] = useState('');
-    const [commentID] = useState('');
     const [show, setShow] = useState(false);
-    const [ setSelectedImage] = useState('');
+    const [commentID, setCommentID] = useState('');
+    const [open, setOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState("");
 
     const handleImageClick = (url) => {
         setSelectedImage(url);
+        setOpen(true);
     };
 
     useEffect(() => {
@@ -49,11 +48,11 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         setNewComment('');
     };
 
-    // const handleEdit = (id, txt) => {
-    //     setShow(true);
-    //     setEditComment(txt);
-    //     setCommentID(id);
-    // };
+    const handleEdit = (id, txt) => {
+        setShow(true);
+        setEditComment(txt);
+        setCommentID(id);
+    };
 
     const updateComment = () => {
         db.collection("posts")
@@ -70,18 +69,30 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         <div className="post">
             <div className="post__header">
                 <h3>{userName}</h3>
-                {/*{user.displayName === userName && (*/}
-                {/*    // <DeleteForeverIcon*/}
-                {/*    //     style={{ color: 'red' }}*/}
-                {/*    //     onClick={() => {*/}
-                {/*    //         db.collection("posts").doc(postId).delete();*/}
-                {/*    //     }}*/}
-                {/*    // />*/}
-                {/*)}*/}
+                {user.displayName === userName && (
+                    <button
+                        onClick={() => {
+                            db.collection("posts").doc(postId).delete();
+                        }}
+                    >
+                        Delete
+                    </button>
+                )}
             </div>
-            <div onClick={() => handleImageClick(imageURL)}>
+            <div onClick={() => handleImageClick(imageURL)} >
                 <img className="post__image" src={imageURL} alt="Post" />
             </div>
+            <Modal
+                isOpen={open}
+                onRequestClose={() => setOpen(false)}
+            >
+                <div>
+                    <img
+                        className="post__image"
+                        src={selectedImage}
+                    />
+                </div>
+            </Modal>
             <p className="post__text">
                 <b>{userName}</b> {caption}
             </p>
@@ -94,29 +105,27 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                         </p>
                     ))}
                 </div>
-                {/*<div className="post--comentarios__iconos">*/}
-                {/*    &nbsp;*/}
-                {/*    {comments.map(({ id, comment }) => (*/}
-                {/*        (comment.username === user.displayName || user.displayName === userName) && (*/}
-                {/*            <p key={id}>*/}
-                {/*            /!*    <EditIcon*!/*/}
-                {/*            /!*        style={{ color: 'blue' }}*!/*/}
-                {/*            /!*        onClick={() => handleEdit(id, comment.text)}*!/*/}
-                {/*            /!*    />*!/*/}
-                {/*            /!*    <DeleteOutlineIcon*!/*/}
-                {/*            /!*        style={{ color: 'red' }}*!/*/}
-                {/*            /!*        onClick={() => {*!/*/}
-                {/*            /!*            db.collection("posts")*!/*/}
-                {/*            /!*                .doc(postId)*!/*/}
-                {/*            /!*                .collection("comments")*!/*/}
-                {/*            /!*                .doc(id)*!/*/}
-                {/*            /!*                .delete();*!/*/}
-                {/*            /!*        }}*!/*/}
-                {/*            /!*    />*!/*/}
-                {/*            /!*</p>*!/*/}
-                {/*        )*/}
-                {/*    ))}*/}
-                {/*</div>*/}
+                <div className="post--comentarios__iconos">
+                    &nbsp;
+                    {comments.map(({ id, comment }) => (
+                        (comment.username === user.displayName || user.displayName === userName) && (
+                            <p key={id}>
+                                <button onClick={() => handleEdit(id, comment.text)}>
+                                    Edit
+                                </button>
+                                <button onClick={() => {
+                                    db.collection("posts")
+                                        .doc(postId)
+                                        .collection("comments")
+                                        .doc(id)
+                                        .delete();
+                                }}>
+                                    Delete
+                                </button>
+                            </p>
+                        )
+                    ))}
+                </div>
             </div>
             {user && show && (
                 <>
@@ -124,7 +133,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                         <input
                             className="post__input"
                             type="text"
-                            placeholder="Editar Comentario"
+                            placeholder="Edit Comment"
                             value={editComment}
                             onChange={(e) => setEditComment(e.target.value)}
                         />
@@ -134,7 +143,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                             type="submit"
                             onClick={updateComment}
                         >
-                            Actualizar
+                            Update
                         </button>
                     </form>
                 </>
@@ -144,7 +153,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     <input
                         className="post__input"
                         type="text"
-                        placeholder="Añade un Comentario"
+                        placeholder="Add a Comment"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
@@ -154,7 +163,7 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                         type="submit"
                         onClick={postComment}
                     >
-                        Comenta!
+                        Comment
                     </button>
                 </form>
             )}

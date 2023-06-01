@@ -5,6 +5,7 @@ import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import 'firebase/compat/storage';
 import './../App.css'
+import {trash_svg} from "./svgs/trash_svg";
 
 
 
@@ -62,12 +63,13 @@ function AddPost({ username }) {
 
             <input className='file-input' type="file" accept=".png, .jpg, .jpeg" onChange={handleChange} />
             <br />
-            {/*<TextField className={"textField"} id="filled-basic" label="Pon una Descripcion" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />*/}
+            <input type="text" className={"textField"} id="filled-basic" label="Pon una Descripcion" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
             <br />
 
             < progress className="barraProgreso" value={progress} max="100" />
             <button className={"button--full"} onClick={handleUpload}>
                 Subir Foto
+                {trash_svg}
             </button>
 
             </div>

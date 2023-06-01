@@ -3,10 +3,10 @@ import * as React from "react";
 import { close_svg } from "./elements_modal";
 
 export function withModal(
-  Component: React.FC | React.ComponentClass,
-  props: object,
-  control: { has_modal: boolean; toggleModal: () => void }
-): React.ComponentClass {
+  Component,
+  props,
+  control
+) {
   return class x extends React.Component {
     render() {
       return (

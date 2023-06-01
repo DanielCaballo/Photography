@@ -7,6 +7,10 @@ import Posts from './Posts';
 import AddPost from './AddPost';
 import { db, auth, provider } from "../firebase";
 import Footer from "./Footer";
+import {Regist} from "./formularios/Registro";
+import {useModal} from "../Modals/useModal";
+import {withModal} from "../Modals/withModal";
+import {Inicio} from "./formularios/Inicio";
 //
 // import { useModal } from "../Modals/useModal";
 // import { withModal } from "../Modals/withModal";
@@ -14,20 +18,33 @@ import Footer from "./Footer";
 const Home = () => {
     // const [has_modal, toggleModal] = useModal();
 
+    const testModal = ()=>{
+        return <h1>hola</h1>
+    }
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, setUser] = useState(null);
     const [posts, setposts] = useState([]);
-    // const InfoFormUseWithModal = withModal(
-    //     InfoFormUse,
-    //     {},
-    //     {
-    //         has_modal,
-    //         toggleModal,
-    //     }
-    // );
-
+    const [has_modal, toggleModal] = useModal();
+    const [has_modal2, toggleModal2] = useModal();
+    const RegistFormUseWithModal = withModal(
+        Regist,
+        {},
+        {
+            has_modal,
+            toggleModal,
+        }
+    );
+    const InicioFormUseWithModal = withModal(
+        Inicio,
+        {},
+        {
+           has_modal : has_modal2,
+           toggleModal : toggleModal2,
+        }
+    );
     // Inicio de sesion con google
     const signInWithGoogle = () => {
         auth.signInWithPopup(provider)
@@ -40,21 +57,6 @@ const Home = () => {
                 // Ocurrió un error durante el inicio de sesión con Google
                 console.log(error);
             });
-    };
-
-    const signUp = (event) => {
-        event.preventDefault();
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then((authUser) => {
-                return authUser.user.updateProfile({
-                    displayName: username,
-                });
-            })
-            .catch((error) => alert(error.message));
-
-        // setOpen(false);
-        // window.location.reload(false);
     };
 
     const signIn = (event) => {
@@ -94,144 +96,66 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="tarjeta">
-                <div >
-                    <form className="tarjeta--form">
-                        <center>
-                            <img
-                                className="tarjeta--form--img__sing"
-                                src={PhotographyImage1}
-                                alt=""
-                                width={'180'}
-                                height={'60'}
-                            />
-                        </center>
-                        <br></br>
-                        <input
-                            className={"tarjeta--form__input"}
-                            placeholder="Nombre de Usuario"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <br></br>
-                        <input
-                            className={"tarjeta--form__input"}
-                            placeholder="email"
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <br></br>
-                        <input
-                            className={"tarjeta--form__input"}
-                            placeholder="Contraseña"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <br></br>
-                        <button className={"button"} type="submit" onClick={signUp}>
-                            Registrarse
-                        </button>
-                    </form>
-                </div>
-                <div>
-                    <form className="">
-                        <center>
-                            <img
-                                className="tarjeta--form--img__sing"
-                                src={PhotographyImage1}
-                                alt=""
-                                width={'180'}
-                                height={'60'}
-                            />
-                        </center>
-                        <br></br>
-                        <input
-                            className={"tarjeta--form__input"}
-                            placeholder="email?"
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <br></br>
-                        <input
-                            className={"tarjeta--form__input"}
-                            placeholder="Contraseña?"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <br></br>
-                        <button className={"button--full"} type="submit" onClick={signIn}>
-                            Entrar
-                        </button>
-                        <br/>
-
-                        <button className={"button--full"} onClick={signInWithGoogle}>Iniciar sesión con Google</button>
-
-                    </form>
-                </div>
-            <div className="">
-                <img
-                    className="tarjeta--form__img"
-                    src={PhotographyImage}
-                    alt=""
-                    width={'180'}
-                    height={'60'}
-                />
-            </div>
-
-            {user ? (
-                <div className={"salir"}>
-                    <button className={"button"} onClick={() => auth.signOut()}>Salir</button>
-                </div>
-            ) : (
-                <div className={"salir"}>
-                    <button className={"button"}>Inicia Sesion</button>
-                    <span>&nbsp;</span>
-                    <button className={"button"} >Registrate</button>
-                </div>
+        <>
+            <img src={PhotographyImage} alt="Eslogan" width={'200'} height={'200'} />
+            {has_modal && (
+                <RegistFormUseWithModal has_modal={has_modal} toggleModal={toggleModal} />
             )}
+            {has_modal2 && (
+                <InicioFormUseWithModal has_modal={has_modal2} toggleModal={toggleModal2} />
+            )}
+            <div className="tarjeta">
+                {user ? (
+                    <div className={"salir"}>
+                        <button className={"button"} onClick={() => auth.signOut()}>Salir</button>
+                    </div>
+                ) : (
+                    <div className={"salir"}>
+                        <button className={"button"} onClick={toggleModal2}>Inicia Sesion</button>
+                        <span>&nbsp;</span>
+                        <button className={"button"} onClick={toggleModal} >Registrate</button>
+                    </div>
+                )}
 
-            {user && user.displayName ? (
-                <>
-                    <AddPost username={user.displayName} />
-                </>
-            ) : (
-                <div className='inicio'>
-                    {/*<div className={"inicio__frase"}>*/}
-                    {/*    Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>    aquí   </b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>   regístrate   </b> para poder añadir o comentar fotos.*/}
-                    {/*</div>*/}
-                    <div className={"inicio__img"}>
-                        <img src={Eslogan}
-                             alt="Eslogan"
-                             width={'650'}
-                             height={'650'}/>
+                {user && user.displayName ? (
+                    <>
+                        <AddPost username={user.displayName} />
+                    </>
+                ) : (
+                    <div className='inicio'>
+                        {/*<div className={"inicio__frase"}>*/}
+                        {/*    Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>    aquí   </b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>   regístrate   </b> para poder añadir o comentar fotos.*/}
+                        {/*</div>*/}
+                        <div className={"inicio__img"}>
+                            <img src={Eslogan}
+                                 alt="Eslogan"
+                                 width={'650'}
+                                 height={'650'}/>
+                        </div>
+                    </div>
+                )}
+
+                <div className="">
+                    <div className="Post">
+                        <br />
+                        {posts.map(({ id, post }) => (
+                            user && user.displayName ? (
+                                <Posts
+                                    key={id}
+                                    postId={id}
+                                    user={user}
+                                    userName={post.userName}
+                                    caption={post.caption}
+                                    imageURL={post.imageURL}
+                                />
+                            ) : null
+                        ))}
                     </div>
                 </div>
-            )}
-
-            <div className="">
-                <div className="Post">
-                    <br />
-                    {posts.map(({ id, post }) => (
-                        user && user.displayName ? (
-                            <Posts
-                                key={id}
-                                postId={id}
-                                user={user}
-                                userName={post.userName}
-                                caption={post.caption}
-                                imageURL={post.imageURL}
-                            />
-                        ) : null
-                    ))}
-                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
+        </>
+
     );
 }
 
