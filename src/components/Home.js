@@ -7,26 +7,26 @@ import Posts from './Posts';
 import AddPost from './AddPost';
 import { db, auth, provider } from "../firebase";
 import Footer from "./Footer";
-
-import { useModal } from "../Modals/useModal";
-import { withModal } from "../Modals/withModal";
+//
+// import { useModal } from "../Modals/useModal";
+// import { withModal } from "../Modals/withModal";
 
 const Home = () => {
-    const [has_modal, toggleModal] = useModal();
+    // const [has_modal, toggleModal] = useModal();
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, setUser] = useState(null);
     const [posts, setposts] = useState([]);
-    const InfoFormUseWithModal = withModal(
-        InfoFormUse,
-        {},
-        {
-            has_modal,
-            toggleModal,
-        }
-    );
+    // const InfoFormUseWithModal = withModal(
+    //     InfoFormUse,
+    //     {},
+    //     {
+    //         has_modal,
+    //         toggleModal,
+    //     }
+    // );
 
     // Inicio de sesion con google
     const signInWithGoogle = () => {
@@ -53,7 +53,7 @@ const Home = () => {
             })
             .catch((error) => alert(error.message));
 
-        setOpen(false);
+        // setOpen(false);
         // window.location.reload(false);
     };
 
@@ -62,7 +62,7 @@ const Home = () => {
         auth.signInWithEmailAndPassword(email, password)
             .catch((error) => alert(error.message));
 
-        setOpensignin(false);
+        // setOpensignin(false);
         // window.location.reload(false);
     };
 
@@ -95,7 +95,7 @@ const Home = () => {
 
     return (
         <div className="tarjeta">
-                <div onClick={toggleModal}>
+                <div >
                     <form className="tarjeta--form">
                         <center>
                             <img
@@ -136,7 +136,7 @@ const Home = () => {
                         </button>
                     </form>
                 </div>
-                <div onClick={toggleModal}>
+                <div>
                     <form className="">
                         <center>
                             <img
@@ -189,9 +189,9 @@ const Home = () => {
                 </div>
             ) : (
                 <div className={"salir"}>
-                    <button className={"button"} disableElevation onClick={() => setOpensignin(true)}>Inicia Sesion</button>
+                    <button className={"button"}>Inicia Sesion</button>
                     <span>&nbsp;</span>
-                    <button className={"button"} disableElevation onClick={() => setOpen(true)}>Registrate</button>
+                    <button className={"button"} >Registrate</button>
                 </div>
             )}
 
@@ -201,9 +201,9 @@ const Home = () => {
                 </>
             ) : (
                 <div className='inicio'>
-                    <div className={"inicio__frase"}>
-                        Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>    aquí   </b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>   regístrate   </b> para poder añadir o comentar fotos.
-                    </div>
+                    {/*<div className={"inicio__frase"}>*/}
+                    {/*    Inicia sesión <b onClick={() => setOpensignin(true)} style={{ cursor: 'pointer', color: 'Red' }}>    aquí   </b> o <b onClick={() => setOpen(true)} style={{ cursor: 'pointer', color: 'Blue' }}>   regístrate   </b> para poder añadir o comentar fotos.*/}
+                    {/*</div>*/}
                     <div className={"inicio__img"}>
                         <img src={Eslogan}
                              alt="Eslogan"
