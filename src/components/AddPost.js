@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storage, db } from "../firebase"
-import { TextField, button } from '@material-ui/core'
+
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import 'firebase/compat/storage';
@@ -62,7 +62,7 @@ function AddPost({ username }) {
 
             <input className='file-input' type="file" accept=".png, .jpg, .jpeg" onChange={handleChange} />
             <br />
-            <TextField className={"textField"} id="filled-basic" label="Pon una Descripcion" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />
+            {/*<TextField className={"textField"} id="filled-basic" label="Pon una Descripcion" variant="filled" onChange={event => setCaption(event.target.value)} value={caption} />*/}
             <br />
 
             < progress className="barraProgreso" value={progress} max="100" />
