@@ -11,9 +11,9 @@ function Posts({ postId, user, userName, caption, imageURL }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const [editComment, setEditComment] = useState('');
-    const [commentID, setCommentID] = useState('');
+    const [commentID] = useState('');
     const [show, setShow] = useState(false);
-    const [selectedImage, setSelectedImage] = useState('');
+    const [ setSelectedImage] = useState('');
 
     const handleImageClick = (url) => {
         setSelectedImage(url);
@@ -49,11 +49,11 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         setNewComment('');
     };
 
-    const handleEdit = (id, txt) => {
-        setShow(true);
-        setEditComment(txt);
-        setCommentID(id);
-    };
+    // const handleEdit = (id, txt) => {
+    //     setShow(true);
+    //     setEditComment(txt);
+    //     setCommentID(id);
+    // };
 
     const updateComment = () => {
         db.collection("posts")
