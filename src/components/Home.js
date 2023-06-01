@@ -1,55 +1,34 @@
-import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core';
-import Modal from "@material-ui/core/Modal";
-import { Button } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
 import PhotographyImage from "./images/Photography.png";
 import PhotographyImage1 from "./images/Photography-sing.png";
 import Eslogan from "./images/Eslogan.png";
-
 import 'firebase/compat/auth';
 import Posts from './Posts';
 import AddPost from './AddPost';
-import {db, auth, provider } from "../firebase";
+import { db, auth, provider } from "../firebase";
 import Footer from "./Footer";
 
-
-function getModalStyle() {
-    return {
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%)',
-    };
-}
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        position: "absolute",
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: "2px solid #000",
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    },
-}));
-
+import { useModal } from "../Modals/useModal";
+import { withModal } from "../Modals/withModal";
 
 const Home = () => {
-
-    const classes = useStyles();
-    const [modalStyle] = React.useState(getModalStyle);
-
-    const [open, setOpen] = useState(false);
-    const [openSignin, setOpensignin] = useState(false);
+    const [has_modal, toggleModal] = useModal();
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const [user, setUser] = useState(null);
-
     const [posts, setposts] = useState([]);
+    const InfoFormUseWithModal = withModal(
+        InfoFormUse,
+        {},
+        {
+            has_modal,
+            toggleModal,
+        }
+    );
 
-    //Inicio de sesion con google
+    // Inicio de sesion con google
     const signInWithGoogle = () => {
         auth.signInWithPopup(provider)
             .then((result) => {
@@ -62,7 +41,6 @@ const Home = () => {
                 console.log(error);
             });
     };
-
 
     const signUp = (event) => {
         event.preventDefault();
@@ -87,7 +65,6 @@ const Home = () => {
         setOpensignin(false);
         // window.location.reload(false);
     };
-
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -118,8 +95,7 @@ const Home = () => {
 
     return (
         <div className="tarjeta">
-            <Modal open={open} onClose={() => setOpen(false)}>
-                <div style={modalStyle} className={classes.paper}>
+                <div onClick={toggleModal}>
                     <form className="tarjeta--form">
                         <center>
                             <img
@@ -155,15 +131,12 @@ const Home = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br></br>
-                        <Button className={"button"} type="submit" onClick={signUp}>
+                        <button className={"button"} type="submit" onClick={signUp}>
                             Registrarse
-                        </Button>
+                        </button>
                     </form>
                 </div>
-            </Modal>
-
-            <Modal open={openSignin} onClose={() => setOpensignin(false)}>
-                <div style={modalStyle} className={classes.paper}>
+                <div onClick={toggleModal}>
                     <form className="">
                         <center>
                             <img
@@ -191,17 +164,15 @@ const Home = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <br></br>
-                        <Button className={"button--full"} type="submit" onClick={signIn}>
+                        <button className={"button--full"} type="submit" onClick={signIn}>
                             Entrar
-                        </Button>
+                        </button>
                         <br/>
 
-                        <Button className={"button--full"} onClick={signInWithGoogle}>Iniciar sesión con Google</Button>
+                        <button className={"button--full"} onClick={signInWithGoogle}>Iniciar sesión con Google</button>
 
                     </form>
                 </div>
-            </Modal>
-
             <div className="">
                 <img
                     className="tarjeta--form__img"
@@ -214,15 +185,16 @@ const Home = () => {
 
             {user ? (
                 <div className={"salir"}>
-                    <Button className={"button"} onClick={() => auth.signOut()}>Salir</Button>
+                    <button className={"button"} onClick={() => auth.signOut()}>Salir</button>
                 </div>
             ) : (
                 <div className={"salir"}>
-                    <Button className={"button"} disableElevation onClick={() => setOpensignin(true)}>Inicia Sesion</Button>
+                    <button className={"button"} disableElevation onClick={() => setOpensignin(true)}>Inicia Sesion</button>
                     <span>&nbsp;</span>
-                    <Button className={"button"} disableElevation onClick={() => setOpen(true)}>Registrate</Button>
+                    <button className={"button"} disableElevation onClick={() => setOpen(true)}>Registrate</button>
                 </div>
             )}
+
             {user && user.displayName ? (
                 <>
                     <AddPost username={user.displayName} />
@@ -237,9 +209,8 @@ const Home = () => {
                              alt="Eslogan"
                              width={'650'}
                              height={'650'}/>
-
                     </div>
-                    </div>
+                </div>
             )}
 
             <div className="">
@@ -261,7 +232,7 @@ const Home = () => {
             </div>
             <Footer />
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;

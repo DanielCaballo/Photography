@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { storage, db } from "../firebase"
-import { TextField, Button } from '@material-ui/core'
+import { TextField, button } from '@material-ui/core'
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
 import 'firebase/compat/storage';
@@ -66,9 +66,9 @@ function AddPost({ username }) {
             <br />
 
             < progress className="barraProgreso" value={progress} max="100" />
-            <Button className={"button--full"} onClick={handleUpload}>
+            <button className={"button--full"} onClick={handleUpload}>
                 Subir Foto
-            </Button>
+            </button>
 
             </div>
 

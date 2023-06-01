@@ -1,0 +1,45 @@
+
+.o-modal{
+  position: fixed;
+  //z-index: variables.$z-modal;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.8);
+  width: 100vw;
+  max-width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #000;
+
+  h1, h2, h3, p {
+    color: var(--c-light);
+  }
+}
+.o-modal--hidden{
+  display: none;
+}
+.m-modal__container{
+  width: 98vw;
+  //max-width: variables.$max-content;
+  margin-left: auto;
+  margin-right: auto;
+  //@media (max-width: variables.$device) {
+    width: 100vw;
+  }
+
+.m-modal__header{
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  span {
+    cursor: pointer;
+  }
+}
+.m-modal__component{
+  //background: variables.$c-background-light;
+  //padding: variables.$spacing;
+}
