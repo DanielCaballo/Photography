@@ -70,14 +70,14 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         <div className="post">
             <div className="post__header">
                 <h3>{userName}</h3>
-                {user.displayName === userName && (
-                    <DeleteForeverIcon
-                        style={{ color: 'red' }}
-                        onClick={() => {
-                            db.collection("posts").doc(postId).delete();
-                        }}
-                    />
-                )}
+                {/*{user.displayName === userName && (*/}
+                {/*    // <DeleteForeverIcon*/}
+                {/*    //     style={{ color: 'red' }}*/}
+                {/*    //     onClick={() => {*/}
+                {/*    //         db.collection("posts").doc(postId).delete();*/}
+                {/*    //     }}*/}
+                {/*    // />*/}
+                {/*)}*/}
             </div>
             <div onClick={() => handleImageClick(imageURL)}>
                 <img className="post__image" src={imageURL} alt="Post" />
@@ -99,20 +99,20 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                     {comments.map(({ id, comment }) => (
                         (comment.username === user.displayName || user.displayName === userName) && (
                             <p key={id}>
-                                <EditIcon
-                                    style={{ color: 'blue' }}
-                                    onClick={() => handleEdit(id, comment.text)}
-                                />
-                                <DeleteOutlineIcon
-                                    style={{ color: 'red' }}
-                                    onClick={() => {
-                                        db.collection("posts")
-                                            .doc(postId)
-                                            .collection("comments")
-                                            .doc(id)
-                                            .delete();
-                                    }}
-                                />
+                                {/*<EditIcon*/}
+                                {/*    style={{ color: 'blue' }}*/}
+                                {/*    onClick={() => handleEdit(id, comment.text)}*/}
+                                {/*/>*/}
+                                {/*<DeleteOutlineIcon*/}
+                                {/*    style={{ color: 'red' }}*/}
+                                {/*    onClick={() => {*/}
+                                {/*        db.collection("posts")*/}
+                                {/*            .doc(postId)*/}
+                                {/*            .collection("comments")*/}
+                                {/*            .doc(id)*/}
+                                {/*            .delete();*/}
+                                {/*    }}*/}
+                                {/*/>*/}
                             </p>
                         )
                     ))}
