@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from "../firebase";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+// import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import firebase from 'firebase/compat/app';
 import "firebase/compat/firestore";
@@ -70,14 +70,14 @@ function Posts({ postId, user, userName, caption, imageURL }) {
         <div className="post">
             <div className="post__header">
                 <h3>{userName}</h3>
-                {user.displayName === userName && (
-                    <DeleteForeverIcon
-                        style={{ color: 'red' }}
-                        onClick={() => {
-                            db.collection("posts").doc(postId).delete();
-                        }}
-                    />
-                )}
+                {/*{user.displayName === userName && (*/}
+                {/*    // <DeleteForeverIcon*/}
+                {/*    //     style={{ color: 'red' }}*/}
+                {/*    //     onClick={() => {*/}
+                {/*    //         db.collection("posts").doc(postId).delete();*/}
+                {/*    //     }}*/}
+                {/*    // />*/}
+                {/*)}*/}
             </div>
             <div onClick={() => handleImageClick(imageURL)}>
                 <img className="post__image" src={imageURL} alt="Post" />
@@ -94,29 +94,29 @@ function Posts({ postId, user, userName, caption, imageURL }) {
                         </p>
                     ))}
                 </div>
-                <div className="post--comentarios__iconos">
-                    &nbsp;
-                    {comments.map(({ id, comment }) => (
-                        (comment.username === user.displayName || user.displayName === userName) && (
-                            <p key={id}>
-                                <EditIcon
-                                    style={{ color: 'blue' }}
-                                    onClick={() => handleEdit(id, comment.text)}
-                                />
-                                <DeleteOutlineIcon
-                                    style={{ color: 'red' }}
-                                    onClick={() => {
-                                        db.collection("posts")
-                                            .doc(postId)
-                                            .collection("comments")
-                                            .doc(id)
-                                            .delete();
-                                    }}
-                                />
-                            </p>
-                        )
-                    ))}
-                </div>
+                {/*<div className="post--comentarios__iconos">*/}
+                {/*    &nbsp;*/}
+                {/*    {comments.map(({ id, comment }) => (*/}
+                {/*        (comment.username === user.displayName || user.displayName === userName) && (*/}
+                {/*            <p key={id}>*/}
+                {/*            /!*    <EditIcon*!/*/}
+                {/*            /!*        style={{ color: 'blue' }}*!/*/}
+                {/*            /!*        onClick={() => handleEdit(id, comment.text)}*!/*/}
+                {/*            /!*    />*!/*/}
+                {/*            /!*    <DeleteOutlineIcon*!/*/}
+                {/*            /!*        style={{ color: 'red' }}*!/*/}
+                {/*            /!*        onClick={() => {*!/*/}
+                {/*            /!*            db.collection("posts")*!/*/}
+                {/*            /!*                .doc(postId)*!/*/}
+                {/*            /!*                .collection("comments")*!/*/}
+                {/*            /!*                .doc(id)*!/*/}
+                {/*            /!*                .delete();*!/*/}
+                {/*            /!*        }}*!/*/}
+                {/*            /!*    />*!/*/}
+                {/*            /!*</p>*!/*/}
+                {/*        )*/}
+                {/*    ))}*/}
+                {/*</div>*/}
             </div>
             {user && show && (
                 <>
