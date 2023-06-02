@@ -309,7 +309,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
   .inicio__img {
     display: flex;
