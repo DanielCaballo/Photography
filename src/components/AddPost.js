@@ -70,7 +70,7 @@ function AddPost({ username }) {
                 <br />
                 <progress className="barraProgreso" value={progress} max="100" />
                 {errorMessage && <p>{errorMessage}</p>}
-                <button className={"button--full"} onClick={handleUpload}>
+                <button className={"button"} onClick={handleUpload}>
                     Subir Foto
                 </button>
             </div>
