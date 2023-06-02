@@ -74,7 +74,7 @@ export const Regist = () => {
             />
             <br></br>
                 <div className={"botones"}>
-            <button className={"button"} type="submit" onClick={signUp}>
+            <button className={"button-style"} type="submit" onClick={signUp}>
                 Registrarse
             </button>
                 </div>

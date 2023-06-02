@@ -22,81 +22,74 @@ body {
 .botones{
   display: flex;
   flex-direction: column;
+  background: radial-gradient(#021341, #213E97)
 
 }
-.button{
-  background: #fff;
-  color: #7993E2;
-  border: 2px solid #7993E2;
-  padding: 20px 20px;
-  border-radius: 30px;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  display: inline-block;
-}
-.button:hover {
-  color: #fff;
-}
-.button::after{
-  content: "";
-  background: #7993E2;
-  position: absolute;
-  z-index: -1;
-  padding: 16px 20px;
-  display: block;
-  border-radius: 50%;
-  left: -50%;
-  right: -50%;
-  top: -150%;
-  bottom: -150%;
-  transform: scale(0, 0);
-  transition: all 0.4s ease;
-}
-.button:hover::after {
-  transition: all 0.9s ease-out;
-  transform: scale(1, 1);
-}
-.button__svg{
+/*.button{*/
+/*  background: none;*/
+/*  border: 2px solid;*/
+/*  font: inherit;*/
+/*  line-height: 1;*/
+/*  margin: 0.5em;*/
+/*  padding: 1em 2em;*/
+/*}*/
+/*.button:hover {*/
+/*  color: #fff;*/
+/*}*/
+/*.button::after{*/
+/*  content: "";*/
+/*  background: #7993E2;*/
+/*  position: absolute;*/
+/*  z-index: -1;*/
+/*  padding: 16px 20px;*/
+/*  display: block;*/
+/*  border-radius: 50%;*/
+/*  left: -50%;*/
+/*  right: -50%;*/
+/*  top: -150%;*/
+/*  bottom: -150%;*/
+/*  transform: scale(0, 0);*/
+/*  transition: all 0.4s ease;*/
+/*}*/
+/*.button:hover::after {*/
+/*  transition: all 0.9s ease-out;*/
+/*  transform: scale(1, 1);*/
+/*}*/
 
-  border: none;
-  background: none;
-  margin: 0;
-}
-.button--full{
-  background: #fff;
-  color: #7993E2;
-  border: 2px solid #213E97;
-  padding: 20px 20px;
-  border-radius: 30px;
-  z-index: -1;
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
+/*.button--full{*/
+/*  background: #fff;*/
+/*  color: #7993E2;*/
+/*  border: 2px solid #213E97;*/
+/*  padding: 20px 20px;*/
+/*  border-radius: 30px;*/
+/*  !*z-index: -1;*!*/
+/*  position: relative;*/
+/*  overflow: hidden;*/
+/*  display: inline-block;*/
 
-}
-.button--full:hover {
-  color: #213E97;
-}
-.button--full::after{
-  content: "";
-  background: #7993E2;
-  position: absolute;
-  z-index: -1;
-  padding: 16px 20px;
-  display: block;
-  border-radius: 50%;
-  left: -50%;
-  right: -50%;
-  top: -150%;
-  bottom: -150%;
-  transform: scale(0, 0);
-  transition: all 0.4s ease;
-}
-.button--full:hover::after {
-  transition: all 0.9s ease-out;
-  transform: scale(1, 1);
-}
+/*}*/
+/*.button--full:hover {*/
+/*  color: #213E97;*/
+/*}*/
+/*.button--full::after{*/
+/*  content: "";*/
+/*  background: #7993E2;*/
+/*  position: absolute;*/
+/*  !*z-index: -1;*!*/
+/*  padding: 16px 20px;*/
+/*  display: block;*/
+/*  border-radius: 50%;*/
+/*  left: -50%;*/
+/*  right: -50%;*/
+/*  top: -150%;*/
+/*  bottom: -150%;*/
+/*  transform: scale(0, 0);*/
+/*  transition: all 0.4s ease;*/
+/*}*/
+/*.button--full:hover::after {*/
+/*  transition: all 0.9s ease-out;*/
+/*  transform: scale(1, 1);*/
+/*}*/
 
 
 
@@ -224,6 +217,9 @@ body {
   background-color: #7993E2;
 
 }
+.imagen_100{
+  width: 100%;
+}
 
 .post__image {
   width: 100%;
@@ -283,6 +279,11 @@ body {
     flex-direction: column;
     align-items: center;
   }
+  .salir {
+    display: flex;
+    /* float: right; */
+    flex-direction: column;
+  }
   .subirImg {
     display: flex;
   }
@@ -294,17 +295,17 @@ body {
     padding: 1rem;
     margin: -35%;
   }
-  .button{
-    background: #fff;
-    color: #7993E2;
-    border: 2px solid #7993E2;
-    padding: 20px 20px;
-    border-radius: 30px;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    display: inline-block;
-  }
+  /*.button{*/
+  /*  background: #fff;*/
+  /*  color: #7993E2;*/
+  /*  border: 2px solid #7993E2;*/
+  /*  padding: 20px 20px;*/
+  /*  border-radius: 30px;*/
+  /*  position: relative;*/
+  /*  !*z-index: 1;*!*/
+  /*  overflow: hidden;*/
+  /*  display: inline-block;*/
+  /*}*/
   .nav {
     display: flex;
     flex-direction: row;
@@ -377,4 +378,33 @@ padding:2rem;
   max-height: 60vh;
   max-width: 60vw;
   object-fit: contain;
+}
+
+/*.button:hover,*/
+/*.button:focus {*/
+/*  background: none;*/
+/*  border: 2px solid;*/
+/*  font: inherit;*/
+/*  line-height: 1;*/
+/*  margin: 0.5em;*/
+/*  padding: 1em 2em;*/
+/*  -webkit-animation: pulse 1s;*/
+/*  animation: pulse 1s;*/
+/*  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);*/
+/*}*/
+
+@-webkit-keyframes pulse{
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+.pulse {
+  --color: #ef6eae;
+  --hover: #ef8f6e;
 }

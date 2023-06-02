@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PhotographyImage from "./images/Photography.png";
-import PhotographyImage1 from "./images/Photography-sing.png";
 import Eslogan from "./images/Eslogan.png";
 import 'firebase/compat/auth';
 import Posts from './Posts';
@@ -11,17 +10,7 @@ import {Regist} from "./formularios/Registro";
 import {useModal} from "../Modals/useModal";
 import {withModal} from "../Modals/withModal";
 import {Inicio} from "./formularios/Inicio";
-//
-// import { useModal } from "../Modals/useModal";
-// import { withModal } from "../Modals/withModal";
-
 const Home = () => {
-    // const [has_modal, toggleModal] = useModal();
-
-    const testModal = ()=>{
-        return <h1>hola</h1>
-    }
-
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -57,7 +46,7 @@ const Home = () => {
                 toggleModal2(false);
             })
             .catch((error) => {
-                // Ocurrió un error durante el inicio de sesión con Google
+                // si ocurre un error
                 console.log(error);
             });
     };
@@ -115,13 +104,13 @@ const Home = () => {
                 )}
                 {user ? (
                     <div className={"salir"}>
-                        <button className={"button"} onClick={() => auth.signOut()}>Salir</button>
+                        <button className={"button-style"} onClick={() => auth.signOut()}>Salir</button>
                     </div>
                 ) : (
                     <div className={"salir"}>
-                        <button className={"button"} onClick={toggleModal2}>Inicia Sesion</button>
-                        <span>&nbsp;</span>
-                        <button className={"button"} onClick={toggleModal} >Registrate</button>
+                        <button className={"button-style"} onClick={toggleModal2}>Inicia Sesion</button>
+                        <button className={"button-style"} onClick={toggleModal} >Registrate</button>
+                        <button className={"button-style"} onClick={signInWithGoogle}>Iniciar sesión con Google</button>
                     </div>
                 )}
                 </div>
@@ -134,7 +123,7 @@ const Home = () => {
                         <div className={"inicio__img"}>
                             <div  className={"inicio__styles"}>
                             <img
-                                className={""}
+                                className={"imagen_100"}
                                 src={Eslogan}
                                  alt="Eslogan"
                                  width={'650'}

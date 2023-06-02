@@ -14,18 +14,24 @@ export const Inicio = () => {
 
     // Inicio de sesion con google
     //Inicio de sesion con google
-    const signInWithGoogle = () => {
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                // El inicio de sesión con Google se completó exitosamente
-                // const user = result.user;
-                // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
-            })
-            .catch((error) => {
-                // Ocurrió un error durante el inicio de sesión con Google
-                console.log(error);
-            });
-    };
+    // function signInWithGoogle() {
+    //     console.log("auth user....")
+    //     auth.signInWithPopup(provider)
+    //         .then((result) => {
+    //             console.log("todo ok... bueno 200 al menos")
+    //             // El inicio de sesión con Google se completó exitosamente
+    //              const user = result.user;
+    //             // Aquí puedes realizar acciones adicionales con el usuario, como guardar su información en tu base de datos
+    //
+    //         })
+    //         .catch((error) => {
+    //             // Ocurrió un error durante el inicio de sesión con Google
+    //             console.error(error);
+    //         })
+    //         .finally(()=> {
+    //             console.log("sacabo")
+    //         })
+    // };
 
     const signIn = (event) => {
         event.preventDefault();
@@ -83,10 +89,9 @@ export const Inicio = () => {
             />
             <br></br>
                 <div className={"botones"}>
-            <button className={"button"} type="submit" onClick={signIn}>
+            <button className={"button-style"} type="submit" onClick={signIn}>
                 Entrar
             </button>
-            <button className={"button"} onClick={signInWithGoogle} disabled>Iniciar sesión con Google</button>
                 </div>
         </form>
         </div>
